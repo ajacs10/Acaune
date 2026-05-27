@@ -153,7 +153,7 @@ iniciar.bat
 
 Depois abra:
 
-- Frontend: `http://127.0.0.1:8088/frontend/html/login.html`
+- Frontend: `http://127.0.0.1:8088
 - API: `http://127.0.0.1:8088/api/dashboard`
 - Teste da base de dados: `http://127.0.0.1:8088/testar-conexao`
 
@@ -191,13 +191,3 @@ Regra de palavra-passe no registo:
 - pelo menos 1 letra minúscula
 - pelo menos 1 número
 - pelo menos 1 caractere especial
-
-## Utilizador inicial
-
-Após importar `backend/mysql/schema.sql`, o sistema cria uma conta administradora inicial:
-
-- Nome: Ana Juliana Avelino Da Costa Sobrinho
-- Email: `ajacs@gmail.com`
-- Palavra-passe: `Ana@01135`
-
-No ficheiro SQL a palavra-passe não fica guardada em texto puro; ela é inserida na tabela `users` com hash seguro.
