@@ -35,6 +35,31 @@ final class AuthController extends Controller
         if ($user && password_verify($password, (string) $user['password'])) {
             unset($user['password']);
 
+            // Tentar enriquecer o utilizador com dados do estudante (se existir)
+            try {
+                $db = Database::connection();
+                $stmt = $db->prepare(
+                    'SELECT s.academic_number, s.full_name AS student_name, s.course_id, c.name AS course_name, s.photo_path
+                     FROM students s
+                     LEFT JOIN courses c ON c.id = s.course_id
+                     WHERE s.user_id = :user_id OR s.email = :email
+                     LIMIT 1'
+                );
+                $stmt->execute(['user_id' => $user['id'], 'email' => $user['email']]);
+                $student = $stmt->fetch();
+
+                if ($student) {
+                    if (!empty($student['student_name'])) {
+                        $user['full_name'] = $student['student_name'];
+                    }
+                    $user['academic_number'] = $student['academic_number'] ?? null;
+                    $user['course'] = $student['course_name'] ?? null;
+                    $user['photo_path'] = $student['photo_path'] ?? null;
+                }
+            } catch (PDOException $exception) {
+                // Se houver erro ao buscar dados do estudante, prossegue sem eles
+            }
+
             $this->json([
                 'success' => true,
                 'message' => 'Login efetuado.',

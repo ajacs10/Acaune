@@ -1,3 +1,14 @@
 @import url("common.css");
 
 /* Página: Matrículas */
+
+/* Estilos para o formulário de registo de estudante quando presente nesta página */
+.student-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+}
+.student-form .primary-button {
+	margin-left: auto;
+}

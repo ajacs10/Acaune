@@ -18,7 +18,6 @@ final class StudentController extends Controller
                         s.photo_path, c.name AS course
                  FROM students s
                  INNER JOIN courses c ON c.id = s.course_id
-                 WHERE c.code IN (\'LGC\', \'GRH\', \'CF\', \'RT\', \'ISI\')
                  ORDER BY s.created_at DESC, s.full_name ASC'
             );
 
@@ -51,6 +50,7 @@ final class StudentController extends Controller
 
         try {
             $db = Database::connection();
+            // Inserir estudante
             $statement = $db->prepare(
                 'INSERT INTO students (course_id, full_name, academic_number, email, academic_status)
                  VALUES (:course_id, :full_name, :academic_number, :email, :academic_status)'
@@ -63,10 +63,30 @@ final class StudentController extends Controller
                 'academic_status' => (string) ($data['academic_status'] ?? 'active'),
             ]);
 
+            $studentId = (int) $db->lastInsertId();
+
+            // Criar matrícula automática para o estudante (semestre corrente)
+            try {
+                $semester = (string) ($data['semester'] ?? (date('Y') . '-' . ((int) date('n') <= 6 ? '1' : '2')));
+                $enrollStmt = $db->prepare(
+                    'INSERT INTO enrollments (student_id, semester, status)
+                     VALUES (:student_id, :semester, :status)'
+                );
+                $enrollStmt->execute([
+                    'student_id' => $studentId,
+                    'semester' => $semester,
+                    'status' => 'active',
+                ]);
+                $enrollmentId = (int) $db->lastInsertId();
+            } catch (PDOException $e) {
+                $enrollmentId = null;
+            }
+
             $this->json([
                 'success' => true,
                 'message' => 'Estudante registado com sucesso.',
-                'id' => (int) $db->lastInsertId(),
+                'id' => $studentId,
+                'enrollment_id' => $enrollmentId,
             ], 201);
         } catch (PDOException $exception) {
             $this->json([

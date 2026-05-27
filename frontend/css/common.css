@@ -64,9 +64,8 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; }
 }
 .sidebar.collapsed { width: 78px; align-items: stretch; }
 .sidebar.collapsed .brand-mark { display: none; }
-.sidebar.collapsed .brand-mark > div:not(.brand-icon), 
-.sidebar.collapsed .sidebar-nav a span,
-.sidebar.collapsed .sidebar-footer { display: none; }
+.sidebar.collapsed .brand-mark > div:not(.brand-icon),
+.sidebar.collapsed .sidebar-nav a span { display: none; }
 .sidebar-collapse {
     align-self: flex-end;
     padding: 0;
@@ -233,7 +232,8 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; }
 .chart-card, .table-card, .toolbar-card, .mini-card, .profile-card, .profile-main, .activity-card, .enrollment-grid > .glass-card { padding: 16px; }
 .activity-panel { display: grid; }
 .activity-card {
-    height: clamp(360px, calc(100vh - 240px), 680px);
+    /* increased activity card height for better readability */
+    height: clamp(460px, calc(100vh - 200px), 760px);
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     overflow: hidden;
@@ -292,7 +292,8 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; }
 .course-bar-track span { display: block; height: 100%; min-height: 0; border-radius: inherit; background: linear-gradient(90deg, var(--blue-800), var(--blue-700)); box-shadow: none; }
 .table-scroll { overflow-x: auto; }
 .students-table-card {
-    height: clamp(360px, calc(100vh - 260px), 640px);
+    /* increased card height for better visibility */
+    height: clamp(460px, calc(100vh - 200px), 760px);
     display: grid;
     grid-template-rows: 1fr;
     overflow: hidden;
@@ -317,8 +318,9 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; }
     margin-top: 8px;
 }
 .premium-table { width: 100%; border-collapse: collapse; }
-.premium-table th, .premium-table td { padding: 14px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.premium-table th { color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; }
+.premium-table th, .premium-table td { padding: 18px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.premium-table td { padding-top: 16px; padding-bottom: 16px; }
+.premium-table th { color: var(--muted); font-size: .9rem; text-transform: uppercase; letter-spacing: .06em; }
 .table-person { display: flex; align-items: center; gap: 10px; }
 .row-actions { display: flex; gap: 8px; }
 .row-actions button, .tab-button, .toggle-row input { border: 0; }
@@ -436,7 +438,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; }
     .course-bar-row { grid-template-columns: 1fr; gap: 8px; }
     .activity-item { grid-template-columns: 12px minmax(0, 1fr); }
     .activity-item time { grid-column: 2; }
-    .activity-card { height: clamp(320px, calc(100vh - 200px), 520px); }
+    .activity-card { height: clamp(420px, calc(100vh - 160px), 680px); }
 }
 @media (max-width: 640px) {
     .page-header { align-items: flex-start; flex-direction: column; }

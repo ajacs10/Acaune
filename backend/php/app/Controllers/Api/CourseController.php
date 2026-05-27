@@ -16,7 +16,6 @@ final class CourseController extends Controller
             $courses = $db->query(
                 'SELECT id, code, name, department, semester, capacity, status
                  FROM courses
-                 WHERE code IN (\'LGC\', \'GRH\', \'CF\', \'RT\', \'ISI\')
                  ORDER BY name ASC'
             )->fetchAll();
 

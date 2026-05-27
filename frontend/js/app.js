@@ -33,6 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return parts.slice(0, 2).map((part) => part[0]).join('').toUpperCase();
     };
 
+    const shortName = (full = '') => {
+        const parts = String(full).trim().split(/\s+/).filter(Boolean);
+        if (!parts.length) return '';
+        if (parts.length === 1) return parts[0];
+        return parts[0] + ' ' + parts[parts.length - 1];
+    };
+
     const formatNumber = (value) => new Intl.NumberFormat('pt-PT').format(Number(value || 0));
 
     const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({
@@ -105,11 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelectorAll('.sidebar').forEach((nav) => {
-        if (nav.querySelector('[data-logout-button]')) return;
+        if (nav.querySelector('[data-logout-button], [data-sidebar-logout]')) return;
         const footer = document.createElement('div');
         footer.className = 'sidebar-footer';
         footer.innerHTML = `
-            <button type="button" class="sidebar-logout" data-logout-button aria-label="Sair">
+                <button type="button" class="sidebar-logout" data-logout-button aria-label="Sair">
                 <span aria-hidden="true">⎋</span>
                 <span class="sidebar-logout-label">Sair</span>
             </button>
@@ -132,11 +139,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('[data-logout-button]').forEach((button) => {
-        button.addEventListener('click', () => {
+    // Robust logout handling via event delegation: works for existing and dynamically added buttons
+    document.addEventListener('click', (event) => {
+        const btn = event.target.closest('[data-logout-button], [data-sidebar-logout]');
+        if (!btn) return;
+        try {
             localStorage.removeItem('currentUser');
+        } catch (e) {
+            // ignore storage errors
+        }
+
+        // Redirect to login.html in the same directory as the current page
+        try {
+            const path = window.location.pathname;
+            const parts = path.split('/');
+            parts.pop(); // remove last segment (file or empty)
+            const base = parts.join('/') || '/';
+            const target = (base.endsWith('/') ? base : base + '/') + 'login.html';
+            window.location.href = target;
+        } catch (e) {
             window.location.href = 'login.html';
-        });
+        }
     });
 
     const renderDonut = (donut, value) => {
@@ -253,9 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('') : '<p class="empty-state">Sem atividades recentes.</p>';
     };
-        }).join('');
-        chart.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Gráfico de linha">${grid}<polygon class="chart-area" points="8,88 ${areaPoints} 92,88" /><polyline class="chart-stroke" points="${points}" />${circles}</svg>`;
-    };
+    
 
     // Password show/hide toggles
     document.querySelectorAll('[data-show-password]').forEach((btn) => {
@@ -347,7 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hydrateHeaderProfile = () => {
         const user = currentUser();
-        const name = user.name || user.full_name || 'Utilizador';
+        const rawName = user.name || user.full_name || 'Utilizador';
+        const name = shortName(rawName) || 'Utilizador';
         const role = user.role_name || user.role || 'Conta ativa';
 
         document.querySelectorAll('[data-current-user-name]').forEach((element) => {
@@ -377,10 +399,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const userProgress = document.getElementById('userProgress');
 
         if (user && user.id) {
-            if (userName) userName.textContent = user.name || user.full_name || 'Utilizador';
-            if (userAvatar) userAvatar.textContent = initials(user.name || user.full_name || 'Utilizador');
+            if (userName) userName.textContent = shortName(user.name || user.full_name || 'Utilizador');
+            if (userAvatar) userAvatar.textContent = initials(shortName(user.name || user.full_name || 'Utilizador'));
             if (userEmail) userEmail.textContent = user.email || '--';
-            if (userAcademic) userAcademic.textContent = `Nº Académico: ${user.academic_number || '--'}`;
+            if (userAcademic) {
+                if (user.academic_number) {
+                    userAcademic.textContent = `Nº Académico: ${user.academic_number}`;
+                    userAcademic.style.display = '';
+                } else {
+                    // hide academic number for non-students or users without it
+                    userAcademic.textContent = '';
+                    userAcademic.style.display = 'none';
+                }
+            }
             if (userCourse) userCourse.textContent = user.course || 'Curso não atribuído';
             if (userPhone) userPhone.textContent = user.phone || '--';
             if (userLocation) userLocation.textContent = user.location || '--';
@@ -445,9 +476,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!table) return;
         try {
             const students = await apiGet('/api/students');
-            table.innerHTML = students.length ? students.map((student) => `
+
+            const searchInput = document.querySelector('[data-students-search]');
+            const courseFilter = document.querySelector('[data-students-course-filter]');
+            const query = (searchInput?.value || '').trim().toLowerCase();
+            const courseVal = (courseFilter?.value || '').trim().toLowerCase();
+
+            const filtered = students.filter((student) => {
+                // course matching: allow by name or id
+                const studentCourse = String(student.course || '').toLowerCase();
+                const studentCourseId = String(student.course_id || '');
+                const matchesCourse = !courseVal || studentCourse === courseVal || studentCourseId === courseVal;
+
+                if (!matchesCourse) return false;
+                if (!query) return true;
+                const name = String(student.name || student.full_name || '').toLowerCase();
+                const academic = String(student.academic_number || '').toLowerCase();
+                const email = String(student.email || '').toLowerCase();
+                return name.includes(query) || academic.includes(query) || email.includes(query);
+            });
+
+            table.innerHTML = filtered.length ? filtered.map((student) => `
                 <tr>
-                    <td><div class="table-person"><div class="avatar-sm">${initials(student.name)}</div><strong>${escapeHtml(student.name)}</strong></div></td>
+                    <td><div class="table-person"><div class="avatar-sm">${initials(student.name || student.full_name)}</div><strong>${escapeHtml(student.name || student.full_name)}</strong></div></td>
                     <td>${escapeHtml(student.academic_number || '--')}</td>
                     <td>${escapeHtml(student.course || '--')}</td>
                     <td><span class="status-pill ${statusClass(student.status)}">${statusLabel(student.status)}</span></td>
@@ -459,19 +510,89 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // wire search/filter controls (if present)
+    const studentsSearch = document.querySelector('[data-students-search]');
+    if (studentsSearch) {
+        studentsSearch.addEventListener('input', () => {
+            loadStudents();
+        });
+    }
+    const studentsCourseFilter = document.querySelector('[data-students-course-filter]');
+    if (studentsCourseFilter) {
+        studentsCourseFilter.addEventListener('change', () => {
+            loadStudents();
+        });
+    }
+
+    // Grades filters
+    const gradesCourseFilter = document.querySelector('[data-grades-course-filter]');
+    const gradesSubjectSelect = document.querySelector('[data-subject-select]');
+    const gradesYearSelect = document.querySelector('[data-grade-year-select]');
+
     const loadCourses = async () => {
-        const select = document.querySelector('[data-course-select]');
-        if (!select) return;
+        const selects = Array.from(document.querySelectorAll('[data-course-select], [data-students-course-filter], [data-grades-course-filter]'));
+        if (!selects.length) return;
         try {
             const courses = await apiGet('/api/courses');
             const list = courses.length ? courses : fallbackCourses;
-            select.innerHTML = list.map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.name)}</option>`).join('');
-            select.disabled = false;
+            selects.forEach((select) => {
+                if (select.hasAttribute('data-course-select')) {
+                    select.innerHTML = list.map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.name)}</option>`).join('');
+                } else if (select.hasAttribute('data-students-course-filter') || select.hasAttribute('data-grades-course-filter')) {
+                    // use id as value for reliable matching
+                    select.innerHTML = [`<option value="">Todos os cursos</option>`].concat(list.map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.name)}</option>`)).join('');
+                }
+                select.disabled = false;
+            });
+            loadSubjects();
         } catch (error) {
-            select.innerHTML = fallbackCourses.map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.name)}</option>`).join('');
-            select.disabled = false;
+            selects.forEach((select) => {
+                if (select.hasAttribute('data-course-select')) {
+                    select.innerHTML = fallbackCourses.map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.name)}</option>`).join('');
+                } else if (select.hasAttribute('data-students-course-filter') || select.hasAttribute('data-grades-course-filter')) {
+                    select.innerHTML = [`<option value="">Todos os cursos</option>`].concat(fallbackCourses.map((course) => `<option value="${escapeHtml(course.id)}">${escapeHtml(course.name)}</option>`)).join('');
+                }
+                select.disabled = false;
+            });
+            loadSubjects();
         }
     };
+
+    const loadSubjects = async () => {
+        const selects = Array.from(document.querySelectorAll('[data-subject-select]'));
+        if (!selects.length) return;
+        try {
+            const subjects = await apiGet('/api/subjects');
+            const list = subjects.length ? subjects : [];
+            selects.forEach((select) => {
+                select.innerHTML = [`<option value="">Todas as disciplinas</option>`].concat(list.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.name)}</option>`)).join('');
+                select.disabled = false;
+            });
+        } catch (error) {
+            selects.forEach((select) => {
+                select.innerHTML = `<option value="">Erro a carregar</option>`;
+                select.disabled = false;
+            });
+        }
+    };
+
+    // populate years (last 5 years)
+    if (gradesYearSelect) {
+        const yearNow = new Date().getFullYear();
+        const opts = ['<option value="">Todos os anos letivos</option>'];
+        for (let y = yearNow; y >= yearNow - 5; y--) opts.push(`<option value="${y}">${y}/${y + 1}</option>`);
+        gradesYearSelect.innerHTML = opts.join('');
+        gradesYearSelect.addEventListener('change', () => loadGrades());
+    }
+
+    if (gradesCourseFilter) {
+        gradesCourseFilter.addEventListener('change', () => {
+            loadGrades();
+        });
+    }
+    if (gradesSubjectSelect) {
+        gradesSubjectSelect.addEventListener('change', () => loadGrades());
+    }
 
     const loadEnrollments = async () => {
         const subjectGrid = document.querySelector('[data-subjects-grid]');
@@ -496,11 +617,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const table = document.querySelector('[data-grades-table]');
         if (!table) return;
         try {
-            const data = await apiGet('/api/grades');
+            // build query from filters
+            const courseId = Number(document.querySelector('[data-grades-course-filter]')?.value || 0);
+            const subjectId = Number(document.querySelector('[data-subject-select]')?.value || 0);
+            const year = Number(document.querySelector('[data-grade-year-select]')?.value || 0);
+            const params = new URLSearchParams();
+            if (Number.isFinite(courseId) && courseId > 0) params.set('course_id', String(courseId));
+            if (Number.isFinite(subjectId) && subjectId > 0) params.set('subject_id', String(subjectId));
+            if (Number.isFinite(year) && year > 0) params.set('year', String(year));
+            const url = '/api/grades' + (params.toString() ? ('?' + params.toString()) : '');
+            const data = await apiGet(url);
             const grades = data.grades || [];
+            const shortName = (full) => {
+                if (!full) return '';
+                const parts = String(full).trim().split(/\s+/).filter(Boolean);
+                if (parts.length === 0) return '';
+                if (parts.length === 1) return parts[0];
+                return parts[0] + ' ' + parts[parts.length - 1];
+            };
+
             table.innerHTML = grades.length ? grades.map((grade) => `
                 <tr>
-                    <td>${escapeHtml(grade.student)}</td>
+                    <td>${escapeHtml(shortName(grade.student))}</td>
                     <td>${escapeHtml(grade.subject)}</td>
                     <td>${Number(grade.score || 0).toFixed(1)}</td>
                     <td><span class="status-pill ${statusClass(grade.status)}">${statusLabel(grade.status)}</span></td>

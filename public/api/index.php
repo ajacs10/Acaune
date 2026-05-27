@@ -27,5 +27,6 @@ $router->get('/api/students', ['App\\Controllers\\Api\\StudentController', 'inde
 $router->post('/api/students', ['App\\Controllers\\Api\\StudentController', 'store']);
 $router->get('/api/enrollments', ['App\\Controllers\\Api\\EnrollmentController', 'index']);
 $router->get('/api/grades', ['App\\Controllers\\Api\\GradeController', 'index']);
+$router->get('/api/subjects', ['App\\Controllers\\Api\\SubjectController', 'index']);
 
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

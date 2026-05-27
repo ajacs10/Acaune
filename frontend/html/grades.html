@@ -24,6 +24,17 @@
         <section class="glass-card table-card grades-table-card" data-collapsible>
           <div class="card-head"><h3>Gestão de notas</h3><span>Lançamento de notas</span></div>
           <div class="card-body" data-card-body>
+            <div class="filters-row" style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+              <select class="input-control" data-grades-course-filter disabled>
+                <option value="">Carregando cursos...</option>
+              </select>
+              <select class="input-control" data-subject-select disabled>
+                <option value="">Carregando disciplinas...</option>
+              </select>
+              <select class="input-control" data-grade-year-select>
+                <option value="">Todos os anos letivos</option>
+              </select>
+            </div>
             <div class="table-scroll grades-table-scroll"><table class="premium-table"><thead><tr><th>Estudante</th><th>Disciplina</th><th>Nota</th><th>Status</th></tr></thead><tbody data-grades-table>
               <tr><td colspan="4" class="empty-state">A carregar notas...</td></tr>
             </tbody></table></div>

@@ -1,3 +1,30 @@
 @import url("common.css");
 
 /* Página: Estudantes */
+
+/* Compact toolbar replacing the registration form */
+.students-toolbar {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 8px 12px;
+}
+.students-toolbar .input-control[type="search"] {
+	flex: 1 1 280px;
+	max-width: 420px;
+}
+.students-toolbar select.input-control {
+	width: 200px;
+}
+
+@media (max-width: 720px) {
+	.students-toolbar {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.students-toolbar .input-control[type="search"], .students-toolbar select.input-control {
+		width: 100%;
+		max-width: none;
+	}
+}
+

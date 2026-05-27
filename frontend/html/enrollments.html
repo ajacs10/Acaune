@@ -20,6 +20,20 @@
       </header>
       <main class="page-content">
         <section class="enrollment-grid">
+          <article class="glass-card table-card">
+            <div class="card-head"><h3>Novo estudante</h3></div>
+            <div class="alert" data-form-message hidden></div>
+            <form class="student-form" data-student-form>
+              <input class="input-control" name="full_name" placeholder="Nome completo" required>
+              <input class="input-control" name="academic_number" placeholder="Nº académico" required>
+              <input class="input-control" type="email" name="email" placeholder="Email institucional" required>
+              <select class="input-control" name="course_id" data-course-select>
+                <option value="">A carregar cursos...</option>
+              </select>
+              <button class="primary-button" type="submit">Registar estudante</button>
+            </form>
+          </article>
+
           <article class="glass-card" data-collapsible>
             <div class="card-head"><h3>Disciplinas disponíveis</h3><span>Semestre atual</span></div>
             <div class="card-body" data-card-body>
