@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AcaUni</title>
+
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body class="auth-shell">
+
+  <div class="auth-card">
+
+    <!-- HEADER -->
+    <div class="auth-header">
+      <div class="auth-logo">AU</div>
+
+      <div class="auth-titles">
+        <h1>AcaUni</h1>
+        <p>Sistema de Gestão Académica</p>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="alert" data-form-message hidden></div>
+
+    <form class="auth-form" data-login-form>
+
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" placeholder="utilizador@universidade.edu" required>
+      </label>
+
+      <label class="field">
+        <span>Palavra-passe</span>
+
+        <div class="password-wrap">
+          <input id="password" name="password" type="password" placeholder="••••••••" required>
+
+          <button type="button" class="password-toggle" data-show-password>
+            Mostrar
+          </button>
+        </div>
+      </label>
+
+      <!-- OPTIONS -->
+      <div class="form-opts">
+
+        <label class="checkbox">
+          <input type="checkbox">
+          Lembrar-me
+        </label>
+
+        <a href="forgot-password.html">Esqueci a palavra-passe</a>
+
+      </div>
+
+      <!-- BUTTON -->
+      <button class="primary-button" type="submit">
+        Entrar
+      </button>
+
+    </form>
+
+    <!-- FOOTER -->
+    <div class="auth-footer">
+      <a href="register.html">Criar nova conta</a>
+    </div>
+
+  </div>
+
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AcaUni</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link href="../css/grades.css" rel="stylesheet">
+</head>
+<body class="app-shell">
+  <div class="app-background"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div><nav class="sidebar-nav"><a class="sidebar-link" href="index.html">Dashboard</a><a class="sidebar-link" href="students.html">Estudantes</a><a class="sidebar-link" href="enrollments.html">Matrículas</a><a class="sidebar-link is-active" href="grades.html">Notas</a><a class="sidebar-link" href="reports.html">Relatórios</a><a class="sidebar-link" href="profile.html">Perfil</a><a class="sidebar-link" href="settings.html">Configurações</a></nav></aside>
+
+    <div class="app-main">
+      <header class="topbar"></header>
+      <main class="page-content">
+        <section class="page-header"><div><p class="eyebrow">Avaliações</p><h1>Gestão de notas</h1><p>Lançamento de notas, médias automáticas e indicadores de aprovação.</p></div><button class="primary-button" type="button">Salvar notas</button></section>
+
+        <section class="glass-card table-card"><div class="table-scroll"><table class="premium-table"><thead><tr><th>Estudante</th><th>Disciplina</th><th>Nota</th><th>Status</th></tr></thead><tbody>
+          <tr><td>João Silva</td><td>Programação II</td><td>16.2</td><td><span class="status-pill status-active">Aprovado</span></td></tr>
+          <tr><td>Maria Santos</td><td>Matemática</td><td>12.8</td><td><span class="status-pill status-active">Aprovado</span></td></tr>
+        </tbody></table></div></section>
+
+        <section class="summary-strip"><article class="glass-card mini-card"><span>Média da turma</span><strong>14.2</strong></article><article class="glass-card mini-card"><span>Aprovados</span><strong>21</strong></article><article class="glass-card mini-card"><span>Reprovados</span><strong>3</strong></article><article class="glass-card mini-card"><span>Em avaliação</span><strong>5</strong></article></section>
+      </main>
+    </div>
+  </div>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

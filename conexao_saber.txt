@@ -1,0 +1,23 @@
+• O erro está confirmado: Connection refused. Isso quer dizer que o projeto está a rodar, mas o MySQL
+  não está ligado ou não está acessível nessa porta.
+
+  No teu PC com XAMPP:
+
+  1. Abre o XAMPP.
+  2. Liga Apache.
+  3. Liga MySQL.
+  4. Abre http://localhost/phpmyadmin.
+  5. Importa o ficheiro backend/mysql/schema.sql.
+  6. Confirma que a base criada chama AcaUni.
+  7. Roda o projeto com:
+
+  iniciar.bat
+
+  Depois testa:
+
+  http://127.0.0.1:8088/testar-conexao
+
+  Se estiver tudo certo, vai aparecer “Conexão efetuada com sucesso”.
+
+  Também adicionei essa rota de diagnóstico ao projeto e documentei no README.
+

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AcaUni</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link href="../css/index.css" rel="stylesheet">
+</head>
+<body class="app-shell">
+  <div class="app-background"></div>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="brand-mark">
+        <div class="brand-icon">A</div>
+        <div>
+          <strong>AcaUni</strong>
+          <span>Sistema Académico</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link is-active" href="index.html">Dashboard</a>
+        <a class="sidebar-link" href="students.html">Estudantes</a>
+        <a class="sidebar-link" href="enrollments.html">Matrículas</a>
+        <a class="sidebar-link" href="grades.html">Notas</a>
+        <a class="sidebar-link" href="reports.html">Relatórios</a>
+        <a class="sidebar-link" href="profile.html">Perfil</a>
+        <a class="sidebar-link" href="settings.html">Configurações</a>
+      </nav>
+    </aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button class="icon-button mobile-trigger" type="button" aria-label="Abrir menu">☰</button>
+        <div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar"></div>
+        <div class="topbar-actions"><button class="icon-button">⏻</button><div class="profile-chip"><div class="avatar-sm">A</div><div><strong>Admin</strong><span>Administrador</span></div></div></div>
+      </header>
+
+      <main class="page-content">
+        <section class="page-header">
+          <div>
+            <p class="eyebrow">Visão geral</p>
+            <h1>Dashboard principal</h1>
+            <p>Resumo operacional do sistema académico universitário.</p>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <article class="glass-card stat-card"><span>Total de Estudantes</span><strong>12,456</strong><small>+12.5%</small></article>
+          <article class="glass-card stat-card"><span>Matrículas Ativas</span><strong>8,753</strong><small>+8.2%</small></article>
+          <article class="glass-card stat-card"><span>Cursos Disponíveis</span><strong>256</strong><small>+4</small></article>
+          <article class="glass-card stat-card"><span>Média Geral</span><strong>15.7</strong><small>+0.6</small></article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="glass-card chart-card"><div class="card-head"><h3>Evolução de matrículas</h3><span>Últimos 6 meses</span></div><div class="chart-line" data-chart-line="72,64,78,81,88,95"></div></article>
+          <article class="glass-card chart-card"><div class="card-head"><h3>Desempenho académico</h3><span>Média</span></div><div class="donut-wrap"><div class="donut" data-donut="78"></div><strong>78%</strong></div></article>
+          <article class="glass-card chart-card"><div class="card-head"><h3>Distribuição por curso</h3><span>Top 5</span></div><div class="bar-chart" data-bars="90,75,68,52,44"></div></article>
+        </section>
+
+      </main>
+    </div>
+  </div>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

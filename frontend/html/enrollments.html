@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AcaUni</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link href="../css/enrollments.css" rel="stylesheet">
+</head>
+<body class="app-shell">
+  <div class="app-background"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div><nav class="sidebar-nav"><a class="sidebar-link" href="index.html">Dashboard</a><a class="sidebar-link" href="students.html">Estudantes</a><a class="sidebar-link is-active" href="enrollments.html">Matrículas</a><a class="sidebar-link" href="grades.html">Notas</a><a class="sidebar-link" href="reports.html">Relatórios</a><a class="sidebar-link" href="profile.html">Perfil</a><a class="sidebar-link" href="settings.html">Configurações</a></nav></aside>
+
+    <div class="app-main">
+      <header class="topbar"><div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar"></div></header>
+      <main class="page-content">
+        <section class="page-header"><div><p class="eyebrow">Matrículas</p><h1>Gestão de matrículas</h1><p>Inscrição por semestre com controlo de vagas e timeline académica.</p></div><button class="primary-button" type="button">Confirmar Matrícula</button></section>
+
+        <section class="enrollment-grid">
+          <article class="glass-card"><div class="card-head"><h3>Disciplinas disponíveis</h3><span>Semestre atual</span></div><div class="subject-grid"><div class="subject-card"><strong>Engenharia Informática</strong><span>Vagas: 120</span><small class="status-pill">Disponível</small></div><div class="subject-card"><strong>Medicina</strong><span>Vagas: 80</span><small class="status-pill">Quase cheio</small></div></div></article>
+
+          <article class="glass-card"><div class="card-head"><h3>Calendário académico</h3><span>Maio 2024</span></div><div class="calendar-mock"><div class="calendar-grid"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+            <span class="calendar-day">1</span><span class="calendar-day">2</span><span class="calendar-day">3</span><span class="calendar-day">4</span>
+            <span class="calendar-day">5</span><span class="calendar-day">6</span><span class="calendar-day">7</span>
+          </div></div></article>
+
+          <article class="glass-card"><div class="card-head"><h3>Timeline de inscrição</h3><span>Estado</span></div><ul class="timeline-list"><li><strong>Seleção</strong><span>Disciplinas escolhidas</span></li><li><strong>Validação</strong><span>Vagas e pré-requisitos</span></li><li><strong>Confirmação</strong><span>Inscrição finalizada</span></li></ul></article>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+gere as iamgens Crie uma série completa de mockups UI/UX ultra-premium para um Sistema Académico Universitário moderno, sofisticado e futurista, apresentado como uma aplicação empresarial de classe mundial.
+
+O design deve transmitir:
+- elegância corporativa,
+- tecnologia avançada,
+- organização extrema,
+- minimalismo premium,
+- experiência visual limpa,
+- aparência altamente profissional.
+
+ESTILO VISUAL:
+- Ultra minimalista
+- Glassmorphism subtil
+- Soft shadows elegantes
+- Bordas arredondadas suaves
+- Layout extremamente organizado
+- Tipografia sans-serif moderna e premium
+- Espaçamento amplo e refinado
+- Ícones vetoriais minimalistas
+- Visual semelhante a dashboards empresariais modernos
+- Inspirado em produtos high-end de tecnologia e fintech
+
+PALETA DE CORES:
+- Azul profundo institucional (#0B1F3A)
+- Azul royal elegante (#123D7A)
+- Branco puro (#FFFFFF)
+- Cinza muito claro (#F4F7FB)
+- Cinza suave para divisões (#DCE3EE)
+- Destaques subtis em azul neon suave
+- Nunca usar cores vibrantes exageradas
+
+FUNDO:
+- Padrões geométricos abstratos discretos
+- Elementos tecnológicos minimalistas
+- Linhas finas relacionadas à educação e dados
+- Grid futurista subtil
+- Aparência limpa sem poluição visual
+
+CRIAR AS SEGUINTES TELAS:
+
+1. DASHBOARD PRINCIPAL
+- Sidebar vertical moderna em azul profundo
+- Ícones minimalistas sofisticados
+- Header premium com:
+  - barra de pesquisa elegante
+  - notificações
+  - avatar do utilizador
+  - dropdown profile
+- Cards estatísticos luxuosos com glassmorphism:
+  - Total de estudantes
+  - Matrículas ativas
+  - Cursos disponíveis
+  - Média geral
+- Gráficos modernos:
+  - linhas
+  - barras
+  - analytics circulares
+- Tabela recente de atividades académicas
+- Indicadores visuais sofisticados
+- Layout extremamente clean e responsivo
+
+2. GESTÃO DE ESTUDANTES
+- Interface de gestão moderna
+- Tabela premium ultra organizada
+- Fotos circulares dos estudantes
+- Nome completo
+- Número académico
+- Curso
+- Estado académico
+- Campo de pesquisa avançada
+- Filtros minimalistas
+- Botões discretos:
+  - visualizar
+  - editar
+  - eliminar
+- Paginação elegante
+- Responsividade perfeita desktop/mobile
+
+3. GESTÃO DE MATRÍCULAS
+- Sistema visual de inscrição por semestre
+- Cards modernos de disciplinas
+- Indicadores de vagas disponíveis
+- Estados visuais:
+  - disponível
+  - quase cheio
+  - encerrado
+- Calendário académico elegante
+- Timeline de inscrição
+- Botão premium “Confirmar Matrícula”
+- Interface extremamente intuitiva
+
+4. GESTÃO DE NOTAS
+- Grade académica sofisticada
+- Inputs modernos minimalistas
+- Lançamento de notas elegante
+- Médias automáticas destacadas
+- Histórico de desempenho
+- Indicadores de aprovação/reprovação
+- Visual altamente profissional
+- Tabela premium organizada
+
+5. RELATÓRIOS E ANALÍTICAS
+- Dashboard analítico avançado
+- Gráficos premium:
+  - barras
+  - linhas
+  - pizza
+  - radar
+- Estatísticas institucionais
+- Indicadores modernos
+- Exportação PDF e Excel
+- KPIs sofisticados
+- Visual inspirado em plataformas enterprise analytics
+
+6. PERFIL DO ESTUDANTE
+- Cartão de perfil premium
+- Foto elegante do estudante
+- Informações pessoais
+- Dados académicos
+- Histórico escolar
+- Timeline académica
+- Progresso curricular visual
+- Skills e desempenho
+- Layout sofisticado e clean
+
+7. CONFIGURAÇÕES DO SISTEMA
+- Gestão de utilizadores
+- Permissões e acessos
+- Segurança e autenticação
+- Configuração de departamentos
+- Configuração de cursos
+- Interface por abas modernas
+- Toggles premium
+- Inputs refinados
+- Visual enterprise-grade
+
+REQUISITOS IMPORTANTES:
+- Aparência semelhante a sistemas premium modernos
+- UI extremamente refinada
+- Alta qualidade visual
+- Design responsivo desktop e mobile
+- Sem aparência amadora
+- Sem excesso de cores
+- Sem elementos infantis
+- Sem visual genérico
+- Aparência de produto tecnológico milionário
+
+QUALIDADE VISUAL:
+- iluminação suave
+- reflexos glassmorphism subtis
+- profundidade elegante
+- sombras premium
+- composição cinematográfica
+- ultra detailed
+- modern enterprise UI
+- award-winning UI/UX
+- futuristic academic management system
+- clean composition
+- realistic application interface
+- highly polished design
+- premium dashboard aesthetic
+- dribbble quality
+- behance quality
+- Figma high-end prototype style
+
+FORMATO:
+- múltiplas telas organizadas
+- mockup completo de aplicação web
+- resolução ultra alta
+- visual realista
+- perspectiva frontal clean

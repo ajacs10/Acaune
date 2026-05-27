@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AcaUni</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo">AU</div>
+      <div class="auth-titles">
+        <h1>AcaUni</h1>
+        <p>Criar conta de acesso</p>
+      </div>
+    </div>
+
+    <p class="auth-intro">Preencha os dados para criar o utilizador do sistema.</p>
+    <div class="alert" data-form-message hidden></div>
+
+    <form class="auth-form" method="post" data-register-form>
+      <label class="field">
+        <span>Nome completo</span>
+        <input type="text" name="name" placeholder="Nome do utilizador" required>
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" placeholder="utilizador@universidade.edu" required>
+      </label>
+
+      <label class="field">
+        <span>Palavra-passe</span>
+        <div class="password-wrap">
+          <input type="password" name="password" placeholder="Ex: Ana@01135" minlength="8" required>
+          <button type="button" class="password-toggle" data-show-password>Mostrar</button>
+        </div>
+      </label>
+
+      <label class="field">
+        <span>Confirmação da palavra-passe</span>
+        <div class="password-wrap">
+          <input type="password" name="password_confirmation" placeholder="Repita a palavra-passe" minlength="8" required>
+          <button type="button" class="password-toggle" data-show-password>Mostrar</button>
+        </div>
+      </label>
+
+      <button class="primary-button" type="submit">Criar conta</button>
+    </form>
+
+    <div class="auth-footer">
+      <a href="login.html">Voltar ao login</a>
+    </div>
+  </div>
+
+  <script src="../js/app.js" defer></script>
+</body>
+</html>
