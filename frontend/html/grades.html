@@ -10,19 +10,25 @@
 <body class="app-shell">
   <div class="app-background"></div>
   <div class="app-layout">
-    <aside class="sidebar"><div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div><nav class="sidebar-nav"><a class="sidebar-link" href="index.html">Dashboard</a><a class="sidebar-link" href="students.html">Estudantes</a><a class="sidebar-link" href="enrollments.html">Matrículas</a><a class="sidebar-link is-active" href="grades.html">Notas</a><a class="sidebar-link" href="reports.html">Relatórios</a><a class="sidebar-link" href="profile.html">Perfil</a><a class="sidebar-link" href="settings.html">Configurações</a></nav></aside>
+    <aside class="sidebar" data-sidebar><button class="sidebar-collapse" data-sidebar-collapse aria-label="Colapsar sidebar">◀</button><div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div><nav class="sidebar-nav"><a class="sidebar-link" href="index.html"><span>Dashboard</span></a><a class="sidebar-link" href="students.html"><span>Estudantes</span></a><a class="sidebar-link" href="enrollments.html"><span>Matrículas</span></a><a class="sidebar-link is-active" href="grades.html"><span>Notas</span></a><a class="sidebar-link" href="reports.html"><span>Relatórios</span></a><a class="sidebar-link" href="profile.html"><span>Perfil</span></a><a class="sidebar-link" href="settings.html"><span>Configurações</span></a></nav><div class="sidebar-footer"><button class="sidebar-logout" data-sidebar-logout><span>⏻</span>Sair</button></div></aside>
 
     <div class="app-main">
-      <header class="topbar"></header>
+      <header class="topbar">
+        <button class="icon-button mobile-trigger" type="button" aria-label="Abrir menu">☰</button>
+        <div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar notas"></div>
+        <div class="topbar-actions"><div class="profile-chip"><div class="avatar-sm" data-current-user-avatar>U</div><div><strong data-current-user-name>Utilizador</strong><span data-current-user-role>Conta ativa</span></div></div></div>
+      </header>
       <main class="page-content">
-        <section class="page-header"><div><p class="eyebrow">Avaliações</p><h1>Gestão de notas</h1><p>Lançamento de notas, médias automáticas e indicadores de aprovação.</p></div><button class="primary-button" type="button">Salvar notas</button></section>
+        <section class="summary-strip"><article class="glass-card mini-card"><span>Média da turma</span><strong data-grade-summary="average">0</strong></article><article class="glass-card mini-card"><span>Aprovados</span><strong data-grade-summary="approved">0</strong></article><article class="glass-card mini-card"><span>Reprovados</span><strong data-grade-summary="failed">0</strong></article><article class="glass-card mini-card"><span>Em avaliação</span><strong data-grade-summary="pending">0</strong></article></section>
 
-        <section class="glass-card table-card"><div class="table-scroll"><table class="premium-table"><thead><tr><th>Estudante</th><th>Disciplina</th><th>Nota</th><th>Status</th></tr></thead><tbody>
-          <tr><td>João Silva</td><td>Programação II</td><td>16.2</td><td><span class="status-pill status-active">Aprovado</span></td></tr>
-          <tr><td>Maria Santos</td><td>Matemática</td><td>12.8</td><td><span class="status-pill status-active">Aprovado</span></td></tr>
-        </tbody></table></div></section>
-
-        <section class="summary-strip"><article class="glass-card mini-card"><span>Média da turma</span><strong>14.2</strong></article><article class="glass-card mini-card"><span>Aprovados</span><strong>21</strong></article><article class="glass-card mini-card"><span>Reprovados</span><strong>3</strong></article><article class="glass-card mini-card"><span>Em avaliação</span><strong>5</strong></article></section>
+        <section class="glass-card table-card grades-table-card" data-collapsible>
+          <div class="card-head"><h3>Gestão de notas</h3><span>Lançamento de notas</span></div>
+          <div class="card-body" data-card-body>
+            <div class="table-scroll grades-table-scroll"><table class="premium-table"><thead><tr><th>Estudante</th><th>Disciplina</th><th>Nota</th><th>Status</th></tr></thead><tbody data-grades-table>
+              <tr><td colspan="4" class="empty-state">A carregar notas...</td></tr>
+            </tbody></table></div>
+          </div>
+        </section>
       </main>
     </div>
   </div>

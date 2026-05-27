@@ -10,12 +10,56 @@
 <body class="app-shell">
   <div class="app-background"></div>
   <div class="app-layout">
-    <aside class="sidebar"><div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div><nav class="sidebar-nav"><a class="sidebar-link" href="index.html">Dashboard</a><a class="sidebar-link" href="students.html">Estudantes</a><a class="sidebar-link" href="enrollments.html">Matrículas</a><a class="sidebar-link" href="grades.html">Notas</a><a class="sidebar-link" href="reports.html">Relatórios</a><a class="sidebar-link is-active" href="profile.html">Perfil</a><a class="sidebar-link" href="settings.html">Configurações</a></nav></aside>
+    <aside class="sidebar" data-sidebar>
+      <button class="sidebar-collapse" data-sidebar-collapse aria-label="Colapsar sidebar">◀</button>
+      <div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link" href="index.html"><span>Dashboard</span></a>
+        <a class="sidebar-link" href="students.html"><span>Estudantes</span></a>
+        <a class="sidebar-link" href="enrollments.html"><span>Matrículas</span></a>
+        <a class="sidebar-link" href="grades.html"><span>Notas</span></a>
+        <a class="sidebar-link" href="reports.html"><span>Relatórios</span></a>
+        <a class="sidebar-link is-active" href="profile.html"><span>Perfil</span></a>
+        <a class="sidebar-link" href="settings.html"><span>Configurações</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-logout" data-sidebar-logout><span>⏻</span>Sair</button>
+      </div>
+    </aside>
 
     <div class="app-main">
-      <header class="topbar"></header>
+      <header class="topbar">
+        <button class="icon-button mobile-trigger" type="button" aria-label="Abrir menu">☰</button>
+        <div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar perfil"></div>
+        <div class="topbar-actions"><div class="profile-chip"><div class="avatar-sm" data-current-user-avatar>U</div><div><strong data-current-user-name>Utilizador</strong><span data-current-user-role>Conta ativa</span></div></div></div>
+      </header>
       <main class="page-content">
-        <section class="profile-grid"><article class="glass-card profile-card"><div class="profile-avatar">JS</div><h1>João Silva</h1><p>Nº Académico: 2021001</p><span class="status-pill status-active">Ativo</span><ul class="profile-meta"><li>Engenharia Informática</li><li>joao.silva@uni.edu</li><li>+351 912 345 678</li><li>Lisboa, Portugal</li></ul></article><article class="glass-card profile-main"><div class="card-head"><h3>Resumo académico</h3><span>75% concluído</span></div><div class="progress-block"><div class="progress-bar"><span style="width:75%"></span></div></div><div class="profile-stats"><div><strong>15.7</strong><span>Média Geral</span></div><div><strong>3º Ano</strong><span>Ano atual</span></div><div><strong>120 ECTS</strong><span>Progresso</span></div></div><div class="chart-line" data-chart-line="12,14,15,15,16,16"></div></article></section>
+        <section class="profile-grid">
+          <article class="glass-card profile-card">
+            <div class="profile-avatar" id="userAvatar">--</div>
+            <h2 id="userName">Utilizador</h2>
+            <p id="userAcademic" style="color: var(--muted);">--</p>
+            <span class="status-pill status-active" id="userStatus">Ativo</span>
+            <ul class="profile-meta" id="userMeta">
+              <li id="userCourse">--</li>
+              <li id="userEmail">--</li>
+              <li id="userPhone">--</li>
+              <li id="userLocation">--</li>
+            </ul>
+          </article>
+          
+          <article class="glass-card profile-main" data-collapsible>
+            <div class="card-head"><h3>Resumo académico</h3><span id="userProgress">0% concluído</span></div>
+            <div class="card-body" data-card-body>
+              <div class="progress-block"><div class="progress-bar"><span id="progressBar" style="width:0%"></span></div></div>
+              <div class="profile-stats">
+                <div><strong id="userAverage">0.0</strong><span>Média Geral</span></div>
+                <div><strong id="userYear">--</strong><span>Ano atual</span></div>
+                <div><strong id="userECTS">0 ECTS</strong><span>Progresso</span></div>
+              </div>
+            </div>
+          </article>
+        </section>
       </main>
     </div>
   </div>

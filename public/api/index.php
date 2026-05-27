@@ -22,6 +22,7 @@ $router = new Router();
 $router->post('/api/login', ['App\\Controllers\\Api\\AuthController', 'login']);
 $router->post('/api/register', ['App\\Controllers\\Api\\AuthController', 'register']);
 $router->get('/api/dashboard', ['App\\Controllers\\Api\\DashboardController', 'index']);
+$router->get('/api/courses', ['App\\Controllers\\Api\\CourseController', 'index']);
 $router->get('/api/students', ['App\\Controllers\\Api\\StudentController', 'index']);
 $router->post('/api/students', ['App\\Controllers\\Api\\StudentController', 'store']);
 $router->get('/api/enrollments', ['App\\Controllers\\Api\\EnrollmentController', 'index']);

@@ -11,13 +11,27 @@ final class StudentController extends Controller
 {
     public function index(): void
     {
-        $this->json([
-            'success' => true,
-            'data' => [
-                ['name' => 'João Silva', 'academic_number' => '2021001', 'course' => 'Engenharia Informática', 'status' => 'active'],
-                ['name' => 'Maria Santos', 'academic_number' => '2021002', 'course' => 'Medicina', 'status' => 'active'],
-            ],
-        ]);
+        try {
+            $db = Database::connection();
+            $statement = $db->query(
+                'SELECT s.id, s.full_name AS name, s.academic_number, s.email, s.academic_status AS status,
+                        s.photo_path, c.name AS course
+                 FROM students s
+                 INNER JOIN courses c ON c.id = s.course_id
+                 WHERE c.code IN (\'LGC\', \'GRH\', \'CF\', \'RT\', \'ISI\')
+                 ORDER BY s.created_at DESC, s.full_name ASC'
+            );
+
+            $this->json([
+                'success' => true,
+                'data' => $statement->fetchAll(),
+            ]);
+        } catch (PDOException $exception) {
+            $this->json([
+                'success' => false,
+                'message' => 'Não foi possível carregar estudantes.',
+            ], 500);
+        }
     }
 
     public function store(): void

@@ -10,7 +10,8 @@
 <body class="app-shell">
   <div class="app-background"></div>
   <div class="app-layout">
-    <aside class="sidebar">
+    <aside class="sidebar" data-sidebar>
+      <button class="sidebar-collapse" data-sidebar-collapse aria-label="Colapsar sidebar">◀</button>
       <div class="brand-mark">
         <div class="brand-icon">A</div>
         <div>
@@ -19,43 +20,39 @@
         </div>
       </div>
       <nav class="sidebar-nav">
-        <a class="sidebar-link is-active" href="index.html">Dashboard</a>
-        <a class="sidebar-link" href="students.html">Estudantes</a>
-        <a class="sidebar-link" href="enrollments.html">Matrículas</a>
-        <a class="sidebar-link" href="grades.html">Notas</a>
-        <a class="sidebar-link" href="reports.html">Relatórios</a>
-        <a class="sidebar-link" href="profile.html">Perfil</a>
-        <a class="sidebar-link" href="settings.html">Configurações</a>
+        <a class="sidebar-link is-active" href="index.html"><span>Dashboard</span></a>
+        <a class="sidebar-link" href="students.html"><span>Estudantes</span></a>
+        <a class="sidebar-link" href="enrollments.html"><span>Matrículas</span></a>
+        <a class="sidebar-link" href="grades.html"><span>Notas</span></a>
+        <a class="sidebar-link" href="reports.html"><span>Relatórios</span></a>
+        <a class="sidebar-link" href="profile.html"><span>Perfil</span></a>
+        <a class="sidebar-link" href="settings.html"><span>Configurações</span></a>
       </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-logout" data-sidebar-logout><span>⏻</span>Sair</button>
+      </div>
     </aside>
 
     <div class="app-main">
-      <header class="topbar">
+      <header class="topbar" data-app-header>
         <button class="icon-button mobile-trigger" type="button" aria-label="Abrir menu">☰</button>
         <div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar"></div>
-        <div class="topbar-actions"><button class="icon-button">⏻</button><div class="profile-chip"><div class="avatar-sm">A</div><div><strong>Admin</strong><span>Administrador</span></div></div></div>
+        <div class="topbar-actions"><div class="profile-chip"><div class="avatar-sm" data-current-user-avatar>U</div><div><strong data-current-user-name>Utilizador</strong><span data-current-user-role>Conta ativa</span></div></div></div>
       </header>
 
-      <main class="page-content">
-        <section class="page-header">
-          <div>
-            <p class="eyebrow">Visão geral</p>
-            <h1>Dashboard principal</h1>
-            <p>Resumo operacional do sistema académico universitário.</p>
-          </div>
-        </section>
-
+      <main class="page-content" data-dashboard-page>
         <section class="stats-grid">
-          <article class="glass-card stat-card"><span>Total de Estudantes</span><strong>12,456</strong><small>+12.5%</small></article>
-          <article class="glass-card stat-card"><span>Matrículas Ativas</span><strong>8,753</strong><small>+8.2%</small></article>
-          <article class="glass-card stat-card"><span>Cursos Disponíveis</span><strong>256</strong><small>+4</small></article>
-          <article class="glass-card stat-card"><span>Média Geral</span><strong>15.7</strong><small>+0.6</small></article>
+          <article class="glass-card stat-card"><span>Total de estudantes</span><strong data-stat="students">0</strong><small>Registos reais</small></article>
+          <article class="glass-card stat-card"><span>Matrículas ativas</span><strong data-stat="active_enrollments">0</strong><small>Semestre atual</small></article>
+          <article class="glass-card stat-card"><span>Cursos disponíveis</span><strong data-stat="courses">0</strong><small>Cursos abertos</small></article>
+          <article class="glass-card stat-card"><span>Média geral</span><strong data-stat="average">0</strong><small>Notas publicadas</small></article>
         </section>
 
-        <section class="dashboard-grid">
-          <article class="glass-card chart-card"><div class="card-head"><h3>Evolução de matrículas</h3><span>Últimos 6 meses</span></div><div class="chart-line" data-chart-line="72,64,78,81,88,95"></div></article>
-          <article class="glass-card chart-card"><div class="card-head"><h3>Desempenho académico</h3><span>Média</span></div><div class="donut-wrap"><div class="donut" data-donut="78"></div><strong>78%</strong></div></article>
-          <article class="glass-card chart-card"><div class="card-head"><h3>Distribuição por curso</h3><span>Top 5</span></div><div class="bar-chart" data-bars="90,75,68,52,44"></div></article>
+        <section class="activity-panel">
+          <article class="glass-card activity-card">
+            <div class="card-head"><h3>Atividades recentes</h3><span>Últimos registos</span></div>
+            <div class="activity-list" data-recent-activities><p class="empty-state">A carregar atividades...</p></div>
+          </article>
         </section>
 
       </main>

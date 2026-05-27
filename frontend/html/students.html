@@ -10,46 +10,47 @@
 <body class="app-shell">
   <div class="app-background"></div>
   <div class="app-layout">
-    <aside class="sidebar">
+    <aside class="sidebar" data-sidebar>
+      <button class="sidebar-collapse" data-sidebar-collapse aria-label="Colapsar sidebar">◀</button>
       <div class="brand-mark"><div class="brand-icon">A</div><div><strong>AcaUni</strong><span>Sistema Académico</span></div></div>
       <nav class="sidebar-nav">
-        <a class="sidebar-link" href="../html/index.html">Dashboard</a>
-        <a class="sidebar-link is-active" href="students.html">Estudantes</a>
-        <a class="sidebar-link" href="enrollments.html">Matrículas</a>
-        <a class="sidebar-link" href="grades.html">Notas</a>
-        <a class="sidebar-link" href="reports.html">Relatórios</a>
-        <a class="sidebar-link" href="profile.html">Perfil</a>
-        <a class="sidebar-link" href="settings.html">Configurações</a>
+        <a class="sidebar-link" href="../html/index.html"><span>Dashboard</span></a>
+        <a class="sidebar-link is-active" href="students.html"><span>Estudantes</span></a>
+        <a class="sidebar-link" href="enrollments.html"><span>Matrículas</span></a>
+        <a class="sidebar-link" href="grades.html"><span>Notas</span></a>
+        <a class="sidebar-link" href="reports.html"><span>Relatórios</span></a>
+        <a class="sidebar-link" href="profile.html"><span>Perfil</span></a>
+        <a class="sidebar-link" href="settings.html"><span>Configurações</span></a>
       </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-logout" data-sidebar-logout><span>⏻</span>Sair</button>
+      </div>
     </aside>
 
     <div class="app-main">
-      <header class="topbar"><div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar estudantes..."></div><div class="topbar-actions"><div class="profile-chip"><div class="avatar-sm">A</div><div><strong>Admin</strong><span>Administrador</span></div></div></div></header>
+      <header class="topbar">
+        <button class="icon-button mobile-trigger" type="button" aria-label="Abrir menu">☰</button>
+        <div class="search-box"><span>⌕</span><input type="search" placeholder="Pesquisar"></div>
+        <div class="topbar-actions"><div class="profile-chip"><div class="avatar-sm" data-current-user-avatar>U</div><div><strong data-current-user-name>Utilizador</strong><span data-current-user-role>Conta ativa</span></div></div></div>
+      </header>
       <main class="page-content">
-        <section class="page-header"><div><p class="eyebrow">Módulo académico</p><h1>Gestão de estudantes</h1><p>Pesquisa avançada, filtros e ações rápidas.</p></div><div class="header-actions"><button class="secondary-button">Exportar</button></div></section>
-
-        <section class="glass-card toolbar-card"><div class="filters-row"><input class="input-control" type="search" placeholder="Pesquisar estudantes..."><select class="input-control"><option>Todos os cursos</option></select><select class="input-control"><option>Todos os estados</option></select></div></section>
-
         <section class="glass-card table-card">
-          <div class="card-head"><h3>Novo estudante</h3><span>Envio por POST para PHP/MySQL</span></div>
+          <div class="card-head"><h3>Novo estudante</h3></div>
           <div class="alert" data-form-message hidden></div>
           <form class="student-form" data-student-form>
             <input class="input-control" name="full_name" placeholder="Nome completo" required>
             <input class="input-control" name="academic_number" placeholder="Nº académico" required>
             <input class="input-control" type="email" name="email" placeholder="Email institucional" required>
-            <select class="input-control" name="course_id">
-              <option value="1">Engenharia Informática</option>
-              <option value="2">Medicina</option>
-              <option value="3">Direito</option>
+            <select class="input-control" name="course_id" data-course-select>
+              <option value="">A carregar cursos...</option>
             </select>
             <button class="primary-button" type="submit">Registar estudante</button>
           </form>
         </section>
 
-        <section class="glass-card table-card"><div class="table-scroll"><table class="premium-table"><thead><tr><th>Estudante</th><th>Nº Académico</th><th>Curso</th><th>Estado</th><th>Ações</th></tr></thead><tbody>
-          <tr><td><div class="table-person"><div class="avatar-sm">J</div><strong>João Silva</strong></div></td><td>2021001</td><td>Engenharia Informática</td><td><span class="status-pill status-active">Ativo</span></td><td><div class="row-actions"><button>Ver</button><button>Editar</button><button>Eliminar</button></div></td></tr>
-          <tr><td><div class="table-person"><div class="avatar-sm">M</div><strong>Maria Santos</strong></div></td><td>2021002</td><td>Medicina</td><td><span class="status-pill status-active">Ativo</span></td><td><div class="row-actions"><button>Ver</button><button>Editar</button><button>Eliminar</button></div></td></tr>
-        </tbody></table></div><div class="pagination-row"><span>1</span><span>2</span><span>3</span><span>...</span><span>24</span></div></section>
+        <section class="glass-card table-card students-table-card"><div class="table-scroll students-table-scroll"><table class="premium-table"><thead><tr><th>Estudante</th><th>Nº Académico</th><th>Curso</th><th>Estado</th><th>Ações</th></tr></thead><tbody data-students-table>
+          <tr><td colspan="5" class="empty-state">A carregar estudantes...</td></tr>
+        </tbody></table></div></section>
       </main>
     </div>
   </div>
